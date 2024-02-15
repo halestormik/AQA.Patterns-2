@@ -66,7 +66,7 @@ public class APITest {
     void shouldTestFormWithUnregisteredUser_Login() { // тестирование формы при вводе логина незарегистрированного пользователя
         SelenideElement form = $("form");
         val user = DataGenerator.Registration.generateUser("us", "active");
-        form.$("[data-test-id=login] input").setValue(user.getLogin() + "123");
+        form.$("[data-test-id=login] input").setValue(DataGenerator.generateUsername("en"));
         form.$("[data-test-id=password] input").setValue(user.getPassword());
         form.$("button").click();
         $("[data-test-id=error-notification] .notification__content")
@@ -79,7 +79,7 @@ public class APITest {
         SelenideElement form = $("form");
         val user = DataGenerator.Registration.generateUser("us", "active");
         form.$("[data-test-id=login] input").setValue(user.getLogin());
-        form.$("[data-test-id=password] input").setValue(user.getPassword() + "123");
+        form.$("[data-test-id=password] input").setValue(DataGenerator.generatePassword("en"));
         form.$("button").click();
         $("[data-test-id=error-notification] .notification__content")
                 .shouldHave(exactText("Ошибка! Неверно указан логин или пароль"))
